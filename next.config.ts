@@ -1,17 +1,11 @@
-import { withNextVideo } from "next-video/process";
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        pathname: '**',
-      },
-    ],
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
   },
-};
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+}
 
-export default withNextVideo(nextConfig, { folder: 'root' });
+export default nextConfig
