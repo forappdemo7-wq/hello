@@ -1,6 +1,5 @@
 'use client';
 
-import { Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -10,10 +9,10 @@ import { BookingFormData } from '@/app/types';
 import Button from '@/app/components/ui/Button';
 import Card from '@/app/components/ui/Card';
 import { useCurrency } from '@/app/context/CurrencyContext';
+import { Suspense } from 'react';
 
-export const dynamic = 'force-dynamic';
-
-export default function BookingPage() {
+// Inner Client Component
+function BookingContent() {
   const { data: session, status: sessionStatus } = useSession();
   const { formatPrice } = useCurrency();
   const router = useRouter();
@@ -328,5 +327,18 @@ export default function BookingPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Main Page Component with Suspense
+export default function BookingPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
+      </div>
+    }>
+      <BookingContent />
+    </Suspense>
   );
 }
