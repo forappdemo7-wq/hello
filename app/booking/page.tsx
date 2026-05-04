@@ -1,5 +1,6 @@
 'use client';
 
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -9,6 +10,8 @@ import { BookingFormData } from '@/app/types';
 import Button from '@/app/components/ui/Button';
 import Card from '@/app/components/ui/Card';
 import { useCurrency } from '@/app/context/CurrencyContext';
+
+export const dynamic = 'force-dynamic';
 
 export default function BookingPage() {
   const { data: session, status: sessionStatus } = useSession();
@@ -88,7 +91,7 @@ export default function BookingPage() {
     if (submitted) {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'   // smooth scrolling effect
+        behavior: 'smooth'
       });
     }
   }, [submitted]);
