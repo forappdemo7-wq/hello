@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+export const dynamic = 'force-dynamic';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
